@@ -4,18 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon backend/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tasheen2002/mern-first-project.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Tasheen2002/mern-first-project/issues"
   },
-  "homepage": "https://github.com/Tasheen2002/mern-first-project#readme"
+  "homepage": "https://github.com/Tasheen2002/mern-first-project#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
