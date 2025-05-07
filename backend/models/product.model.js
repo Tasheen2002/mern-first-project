@@ -20,6 +20,6 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-const Product=mongoose.model('product',productSchema);
+const Product=mongoose.model('Product',productSchema); //Product(collection name) autimatically converts the name to products
 
 export default Product;
