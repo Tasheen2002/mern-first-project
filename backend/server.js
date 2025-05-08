@@ -7,11 +7,12 @@ dotenv.config();
 
 const app = express(); //express is a function. when calling it it returns a object that store in a variable called app.
 //app.listen is the one of the function in the app object.
+// const PORT=process.env.PORT || 5000;
 
 // console.log(process.env.MONGO_URI);
 
 app.use(express.json()); //allow us to accept json data in the req.body
-app.use("api/products", productRoutes);
+app.use("/api/products", productRoutes);
 
 app.listen(5000, () => {
   connectDB();
