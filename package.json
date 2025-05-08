@@ -19,8 +19,12 @@
   },
   "homepage": "https://github.com/Tasheen2002/mern-first-project#readme",
   "dependencies": {
+    "@chakra-ui/react": "^3.17.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "framer-motion": "^12.10.1",
     "mongoose": "^8.14.0"
   },
   "devDependencies": {
