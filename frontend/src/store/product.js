@@ -5,7 +5,6 @@ export const useProductStore = create((set) => ({
   setProducts: (products) => set({ products }),
 
   createProduct: async (newProduct) => {
-    // Validate input
     if (!newProduct.name || !newProduct.image || !newProduct.price) {
       return { success: false, message: "Please fill in all fields" };
     }
@@ -19,9 +18,8 @@ export const useProductStore = create((set) => ({
         body: JSON.stringify(newProduct),
       });
 
-      // Check if response is OK (status code 2xx)
       if (!res.ok) {
-        const errorText = await res.text(); // If not valid JSON, read as plain text
+        const errorText = await res.text();
         console.error("Server responded with error:", errorText);
         return {
           success: false,
@@ -30,8 +28,6 @@ export const useProductStore = create((set) => ({
       }
 
       const data = await res.json();
-
-      // Expecting the actual product in `data` or `data.data`
       const product = data.data || data;
       set((state) => ({ products: [...state.products, product] }));
 
@@ -41,6 +37,68 @@ export const useProductStore = create((set) => ({
       return {
         success: false,
         message: "Something went wrong. Please try again.",
+      };
+    }
+  },
+
+  fetchProducts: async () => {
+    const res = await fetch("/api/products");
+    const data = await res.json();
+    set({ products: data.data });
+  },
+
+  deleteProduct: async (pid) => {
+    try {
+      const res = await fetch(`/api/products/${pid}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        return { success: false, message: data.message };
+      }
+
+      set((state) => ({
+        products: state.products.filter((p) => p._id !== pid),
+      }));
+
+      return { success: true, message: "Product deleted successfully" };
+    } catch (error) {
+      console.error("Delete error:", error);
+      return {
+        success: false,
+        message: "Something went wrong while deleting the product.",
+      };
+    }
+  },
+
+  updateProduct: async (pid, updatedProduct) => {
+    try {
+      const res = await fetch(`/api/products/${pid}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        return { success: false, message: data.message };
+      }
+
+      set((state) => ({
+        products: state.products.map((product) =>
+          product._id === pid ? data.data : product
+        ),
+      }));
+
+      return { success: true, message: "Product updated successfully" };
+    } catch (error) {
+      console.error("Update error:", error);
+      return {
+        success: false,
+        message: "Something went wrong while updating the product.",
       };
     }
   },
