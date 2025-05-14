@@ -36,8 +36,9 @@ const HomePage = () => {
         <Grid
           container
           spacing={8}
-          justifyContent={"center"} // Align items to the left
+          // justifyContent={"center"} // Align items to the left
           alignItems={"flex-start"}
+          marginLeft={12}
         >
           {products.length > 0 ? (
             products.map((product) => (

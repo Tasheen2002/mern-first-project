@@ -52,7 +52,6 @@ export const useProductStore = create((set) => ({
       const res = await fetch(`/api/products/${pid}`, {
         method: "DELETE",
       });
-
       const data = await res.json();
 
       if (!data.success) {
@@ -82,7 +81,6 @@ export const useProductStore = create((set) => ({
         },
         body: JSON.stringify(updatedProduct),
       });
-
       const data = await res.json();
 
       if (!data.success) {
