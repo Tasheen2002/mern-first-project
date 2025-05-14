@@ -59,7 +59,10 @@ export const ProductCart = ({ product }) => {
   };
 
   const handleUpdateProduct = async (updatedProduct) => {
-    const { success, message } = await updateProduct(product._id, updatedProduct);
+    const { success, message } = await updateProduct(
+      product._id,
+      updatedProduct
+    );
     setSnackbar({
       open: true,
       message,
@@ -81,7 +84,7 @@ export const ProductCart = ({ product }) => {
       <Card
         sx={{
           width: 300,
-          height:400,
+          height: 450,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -98,14 +101,9 @@ export const ProductCart = ({ product }) => {
       >
         <CardMedia
           component="img"
-          height="60%"
+          height="70%"
           image={product.image}
           alt={product.name}
-          sx={{
-            objectFit: "contain",
-            borderRadius: "8px 8px 0 0",
-            background: "#f0f0f0",
-          }}
         />
         <CardContent sx={{ flexGrow: 1, pb: 1 }}>
           <Typography variant="subtitle1" fontWeight="bold" gutterBottom noWrap>
