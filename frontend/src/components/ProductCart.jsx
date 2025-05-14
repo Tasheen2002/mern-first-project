@@ -81,6 +81,7 @@ export const ProductCart = ({ product }) => {
       <Card
         sx={{
           width: 300,
+          height:400,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -97,7 +98,7 @@ export const ProductCart = ({ product }) => {
       >
         <CardMedia
           component="img"
-          height="180"
+          height="60%"
           image={product.image}
           alt={product.name}
           sx={{
